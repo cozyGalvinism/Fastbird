@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Test fastbird",
+            "program": "${workspaceFolder:fastbird}/.build/debug/fastbirdPackageTests.xctest",
+            "cwd": "${workspaceFolder:fastbird}",
+            "preLaunchTask": "swift: Build All"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Test Fastbird",
+            "program": "${workspaceFolder:Fastbird}/.build/debug/FastbirdPackageTests.xctest",
+            "cwd": "${workspaceFolder:Fastbird}",
+            "preLaunchTask": "swift: Build All"
+        }
+    ]
+}
