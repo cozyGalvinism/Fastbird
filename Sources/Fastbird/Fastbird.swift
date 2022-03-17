@@ -1,7 +1,7 @@
 import Alamofire
 import Foundation
 
-public struct Fastbird {
+public class Fastbird {
     let baseUrl: String
     let apiUrl: String
     let apiKey: String

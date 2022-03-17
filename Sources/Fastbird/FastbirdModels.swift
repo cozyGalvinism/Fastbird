@@ -1,4 +1,4 @@
-public struct APIResponseObject<T, MT>: Decodable where T: Decodable, MT: Decodable {
+public class APIResponseObject<T, MT>: Decodable where T: Decodable, MT: Decodable {
     public let object: String
     public let attributes: T
     public let meta: Optional<MT>
@@ -10,7 +10,7 @@ public struct APIResponseObject<T, MT>: Decodable where T: Decodable, MT: Decoda
     }
 }
 
-public struct APIResponseList<T, MT>: Decodable where T: Decodable, MT: Decodable {
+public class APIResponseList<T, MT>: Decodable where T: Decodable, MT: Decodable {
     public let object: String
     public let data: [T]
     public let meta: Optional<MT>
@@ -22,7 +22,7 @@ public struct APIResponseList<T, MT>: Decodable where T: Decodable, MT: Decodabl
     }
 }
 
-public struct APIResponsePagination: Decodable {
+public class APIResponsePagination: Decodable {
     public let total: Int
     public let count: Int
     public let perPage: Int
@@ -38,7 +38,7 @@ public struct APIResponsePagination: Decodable {
     }
 }
 
-public struct APIResponsePaginationMetaData: Decodable {
+public class APIResponsePaginationMetaData: Decodable {
     public let pagination: APIResponsePagination
 
     public init(pagination: APIResponsePagination) {
@@ -46,7 +46,7 @@ public struct APIResponsePaginationMetaData: Decodable {
     }
 }
 
-public struct APIResponseServerMetaData: Decodable {
+public class APIResponseServerMetaData: Decodable {
     public let isServerOwner: Bool
     public let userPermissions: [String]
 
@@ -56,7 +56,7 @@ public struct APIResponseServerMetaData: Decodable {
     }
 }
 
-public struct PteroClientServerSftpDetails: Decodable {
+public class PteroClientServerSftpDetails: Decodable {
     public let ip: String
     public let port: Int
 
@@ -66,7 +66,7 @@ public struct PteroClientServerSftpDetails: Decodable {
     }
 }
 
-public struct PteroClientServerLimits: Decodable {
+public class PteroClientServerLimits: Decodable {
     public let memory: Int
     public let swap: Int
     public let disk: Int
@@ -82,7 +82,7 @@ public struct PteroClientServerLimits: Decodable {
     }
 }
 
-public struct PteroClientServerFeatureLimits: Decodable {
+public class PteroClientServerFeatureLimits: Decodable {
     public let databases: Int
     public let allocations: Int
     public let backups: Int
@@ -94,7 +94,7 @@ public struct PteroClientServerFeatureLimits: Decodable {
     }
 }
 
-public struct PteroClientServerRelationshipsAllocation: Decodable {
+public class PteroClientServerRelationshipsAllocation: Decodable {
     public let id: Int
     public let ip: String
     public let ipAlias: Optional<String>
@@ -112,7 +112,7 @@ public struct PteroClientServerRelationshipsAllocation: Decodable {
     }
 }
 
-public struct PteroClientServerRelationships: Decodable {
+public class PteroClientServerRelationships: Decodable {
     public let allocations: APIResponseList<APIResponseObject<PteroClientServerRelationshipsAllocation, APIResponsePaginationMetaData>, APIResponsePaginationMetaData>
 
     public init(allocations: APIResponseList<APIResponseObject<PteroClientServerRelationshipsAllocation, APIResponsePaginationMetaData>, APIResponsePaginationMetaData>) {
@@ -120,7 +120,7 @@ public struct PteroClientServerRelationships: Decodable {
     }
 }
 
-public struct PteroClientServer: Decodable {
+public class PteroClientServer: Decodable {
     public let serverOwner: Bool
     public let identifier: String
     public let uuid: String
@@ -150,7 +150,7 @@ public struct PteroClientServer: Decodable {
     }
 }
 
-public struct PteroClientServerResources: Decodable {
+public class PteroClientServerResources: Decodable {
     public let memoryBytes: Int
     public let cpuAbsolute: Double
     public let diskBytes: Int
@@ -166,7 +166,7 @@ public struct PteroClientServerResources: Decodable {
     }
 }
 
-public struct PteroClientServerResourceUsage: Decodable {
+public class PteroClientServerResourceUsage: Decodable {
     public let currentState: String
     public let isSuspended: Bool
     public let resources: PteroClientServerResources
