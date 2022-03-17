@@ -3,7 +3,7 @@ public struct APIResponseObject<T, MT>: Decodable where T: Decodable, MT: Decoda
     public let attributes: T
     public let meta: Optional<MT>
 
-    init(object: String, attributes: T, meta: Optional<MT>) {
+    public init(object: String, attributes: T, meta: Optional<MT>) {
         self.object = object
         self.attributes = attributes
         self.meta = meta
@@ -15,7 +15,7 @@ public struct APIResponseList<T, MT>: Decodable where T: Decodable, MT: Decodabl
     public let data: [T]
     public let meta: Optional<MT>
 
-    init(object: String, data: [T], meta: Optional<MT>) {
+    public init(object: String, data: [T], meta: Optional<MT>) {
         self.object = object
         self.data = data
         self.meta = meta
@@ -29,7 +29,7 @@ public struct APIResponsePagination: Decodable {
     public let currentPage: Int
     public let totalPages: Int
 
-    init(total: Int, count: Int, perPage: Int, currentPage: Int, totalPages: Int) {
+    public init(total: Int, count: Int, perPage: Int, currentPage: Int, totalPages: Int) {
         self.total = total
         self.count = count
         self.perPage = perPage
@@ -41,7 +41,7 @@ public struct APIResponsePagination: Decodable {
 public struct APIResponsePaginationMetaData: Decodable {
     public let pagination: APIResponsePagination
 
-    init(pagination: APIResponsePagination) {
+    public init(pagination: APIResponsePagination) {
         self.pagination = pagination
     }
 }
@@ -50,7 +50,7 @@ public struct APIResponseServerMetaData: Decodable {
     public let isServerOwner: Bool
     public let userPermissions: [String]
 
-    init(isServerOwner: Bool, userPermissions: [String]) {
+    public init(isServerOwner: Bool, userPermissions: [String]) {
         self.isServerOwner = isServerOwner
         self.userPermissions = userPermissions
     }
@@ -60,7 +60,7 @@ public struct PteroClientServerSftpDetails: Decodable {
     public let ip: String
     public let port: Int
 
-    init(ip: String, port: Int) {
+    public init(ip: String, port: Int) {
         self.ip = ip
         self.port = port
     }
@@ -73,7 +73,7 @@ public struct PteroClientServerLimits: Decodable {
     public let io: Int
     public let cpu: Int
 
-    init(memory: Int, swap: Int, disk: Int, io: Int, cpu: Int) {
+    public init(memory: Int, swap: Int, disk: Int, io: Int, cpu: Int) {
         self.memory = memory
         self.swap = swap
         self.disk = disk
@@ -87,7 +87,7 @@ public struct PteroClientServerFeatureLimits: Decodable {
     public let allocations: Int
     public let backups: Int
 
-    init(databases: Int, allocations: Int, backups: Int) {
+    public init(databases: Int, allocations: Int, backups: Int) {
         self.databases = databases
         self.allocations = allocations
         self.backups = backups
@@ -102,7 +102,7 @@ public struct PteroClientServerRelationshipsAllocation: Decodable {
     public let notes: Optional<String>
     public let isDefault: Bool
 
-    init(id: Int, ip: String, ipAlias: Optional<String>, port: Int, notes: Optional<String>, isDefault: Bool) {
+    public init(id: Int, ip: String, ipAlias: Optional<String>, port: Int, notes: Optional<String>, isDefault: Bool) {
         self.id = id
         self.ip = ip
         self.ipAlias = ipAlias
@@ -115,7 +115,7 @@ public struct PteroClientServerRelationshipsAllocation: Decodable {
 public struct PteroClientServerRelationships: Decodable {
     public let allocations: APIResponseList<APIResponseObject<PteroClientServerRelationshipsAllocation, APIResponsePaginationMetaData>, APIResponsePaginationMetaData>
 
-    init(allocations: APIResponseList<APIResponseObject<PteroClientServerRelationshipsAllocation, APIResponsePaginationMetaData>, APIResponsePaginationMetaData>) {
+    public init(allocations: APIResponseList<APIResponseObject<PteroClientServerRelationshipsAllocation, APIResponsePaginationMetaData>, APIResponsePaginationMetaData>) {
         self.allocations = allocations
     }
 }
@@ -133,7 +133,7 @@ public struct PteroClientServer: Decodable {
     public let limits: PteroClientServerLimits
     public let featureLimits: PteroClientServerFeatureLimits
 
-    init(serverOwner: Bool, identifier: String, uuid: String, name: String, node: String, description: String, isSuspended: Bool, isInstalling: Bool, sftpDetails: PteroClientServerSftpDetails, limits: PteroClientServerLimits, featureLimits: PteroClientServerFeatureLimits) {
+    public init(serverOwner: Bool, identifier: String, uuid: String, name: String, node: String, description: String, isSuspended: Bool, isInstalling: Bool, sftpDetails: PteroClientServerSftpDetails, limits: PteroClientServerLimits, featureLimits: PteroClientServerFeatureLimits) {
         self.serverOwner = serverOwner
         self.identifier = identifier
         self.uuid = uuid
@@ -155,7 +155,7 @@ public struct PteroClientServerResources: Decodable {
     public let networkRxBytes: Int
     public let networkTxBytes: Int
 
-    init(memoryBytes: Int, cpuAbsolute: Double, diskBytes: Int, networkRxBytes: Int, networkTxBytes: Int) {
+    public init(memoryBytes: Int, cpuAbsolute: Double, diskBytes: Int, networkRxBytes: Int, networkTxBytes: Int) {
         self.memoryBytes = memoryBytes
         self.cpuAbsolute = cpuAbsolute
         self.diskBytes = diskBytes
@@ -169,7 +169,7 @@ public struct PteroClientServerResourceUsage: Decodable {
     public let isSuspended: Bool
     public let resources: PteroClientServerResources
 
-    init(currentState: String, isSuspended: Bool, resources: PteroClientServerResources) {
+    public init(currentState: String, isSuspended: Bool, resources: PteroClientServerResources) {
         self.currentState = currentState
         self.isSuspended = isSuspended
         self.resources = resources
