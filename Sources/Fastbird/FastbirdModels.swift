@@ -132,8 +132,9 @@ public struct PteroClientServer: Decodable {
     public let sftpDetails: PteroClientServerSftpDetails
     public let limits: PteroClientServerLimits
     public let featureLimits: PteroClientServerFeatureLimits
+    public let relationships: PteroClientServerRelationships
 
-    public init(serverOwner: Bool, identifier: String, uuid: String, name: String, node: String, description: String, isSuspended: Bool, isInstalling: Bool, sftpDetails: PteroClientServerSftpDetails, limits: PteroClientServerLimits, featureLimits: PteroClientServerFeatureLimits) {
+    public init(serverOwner: Bool, identifier: String, uuid: String, name: String, node: String, description: String, isSuspended: Bool, isInstalling: Bool, sftpDetails: PteroClientServerSftpDetails, limits: PteroClientServerLimits, featureLimits: PteroClientServerFeatureLimits, relationships: PteroClientServerRelationships) {
         self.serverOwner = serverOwner
         self.identifier = identifier
         self.uuid = uuid
@@ -145,6 +146,7 @@ public struct PteroClientServer: Decodable {
         self.sftpDetails = sftpDetails
         self.limits = limits
         self.featureLimits = featureLimits
+        self.relationships = relationships
     }
 }
 
