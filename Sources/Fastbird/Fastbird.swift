@@ -2,9 +2,9 @@ import Alamofire
 import Foundation
 
 public class Fastbird {
-    let baseUrl: String
-    let apiUrl: String
-    let apiKey: String
+    var baseUrl: String
+    var apiUrl: String
+    var apiKey: String
     let decoder: JSONDecoder
 
     public init(baseUrl: String, apiKey: String) {
@@ -17,6 +17,19 @@ public class Fastbird {
         self.apiKey = apiKey
         self.decoder = JSONDecoder()
         self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+    }
+
+    public func setBaseUrl(baseUrl: String) {
+        self.baseUrl = baseUrl
+        if baseUrl.hasSuffix("/") {
+            self.apiUrl = baseUrl + "api"
+        } else {
+            self.apiUrl = baseUrl + "/api"
+        }
+    }
+
+    public func setAPIKey(apiKey: String) {
+        self.apiKey = apiKey
     }
 
     public func getServers(completion: @escaping (Result<APIResponseList<APIResponseObject<PteroClientServer, APIResponsePaginationMetaData>, APIResponsePaginationMetaData>, AFError>) -> Void) {
