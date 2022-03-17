@@ -1,4 +1,4 @@
-public class APIResponseObject<T, MT>: Decodable where T: Decodable, MT: Decodable {
+public struct APIResponseObject<T, MT>: Decodable, Hashable where T: Decodable, T: Hashable, MT: Decodable, MT: Hashable {
     public let object: String
     public let attributes: T
     public let meta: Optional<MT>
@@ -10,7 +10,7 @@ public class APIResponseObject<T, MT>: Decodable where T: Decodable, MT: Decodab
     }
 }
 
-public class APIResponseList<T, MT>: Decodable where T: Decodable, MT: Decodable {
+public struct APIResponseList<T, MT>: Decodable, Hashable where T: Decodable, MT: Decodable, T: Hashable, MT: Hashable {
     public let object: String
     public let data: [T]
     public let meta: Optional<MT>
@@ -22,7 +22,7 @@ public class APIResponseList<T, MT>: Decodable where T: Decodable, MT: Decodable
     }
 }
 
-public class APIResponsePagination: Decodable {
+public struct APIResponsePagination: Decodable, Hashable {
     public let total: Int
     public let count: Int
     public let perPage: Int
@@ -38,7 +38,7 @@ public class APIResponsePagination: Decodable {
     }
 }
 
-public class APIResponsePaginationMetaData: Decodable {
+public struct APIResponsePaginationMetaData: Decodable, Hashable {
     public let pagination: APIResponsePagination
 
     public init(pagination: APIResponsePagination) {
@@ -46,7 +46,7 @@ public class APIResponsePaginationMetaData: Decodable {
     }
 }
 
-public class APIResponseServerMetaData: Decodable {
+public struct APIResponseServerMetaData: Decodable, Hashable {
     public let isServerOwner: Bool
     public let userPermissions: [String]
 
@@ -56,7 +56,7 @@ public class APIResponseServerMetaData: Decodable {
     }
 }
 
-public class PteroClientServerSftpDetails: Decodable {
+public struct PteroClientServerSftpDetails: Decodable, Hashable {
     public let ip: String
     public let port: Int
 
@@ -66,7 +66,7 @@ public class PteroClientServerSftpDetails: Decodable {
     }
 }
 
-public class PteroClientServerLimits: Decodable {
+public struct PteroClientServerLimits: Decodable, Hashable {
     public let memory: Int
     public let swap: Int
     public let disk: Int
@@ -82,7 +82,7 @@ public class PteroClientServerLimits: Decodable {
     }
 }
 
-public class PteroClientServerFeatureLimits: Decodable {
+public struct PteroClientServerFeatureLimits: Decodable, Hashable {
     public let databases: Int
     public let allocations: Int
     public let backups: Int
@@ -94,7 +94,7 @@ public class PteroClientServerFeatureLimits: Decodable {
     }
 }
 
-public class PteroClientServerRelationshipsAllocation: Decodable {
+public struct PteroClientServerRelationshipsAllocation: Decodable, Hashable {
     public let id: Int
     public let ip: String
     public let ipAlias: Optional<String>
@@ -112,7 +112,7 @@ public class PteroClientServerRelationshipsAllocation: Decodable {
     }
 }
 
-public class PteroClientServerRelationships: Decodable {
+public struct PteroClientServerRelationships: Decodable, Hashable {
     public let allocations: APIResponseList<APIResponseObject<PteroClientServerRelationshipsAllocation, APIResponsePaginationMetaData>, APIResponsePaginationMetaData>
 
     public init(allocations: APIResponseList<APIResponseObject<PteroClientServerRelationshipsAllocation, APIResponsePaginationMetaData>, APIResponsePaginationMetaData>) {
@@ -120,7 +120,7 @@ public class PteroClientServerRelationships: Decodable {
     }
 }
 
-public class PteroClientServer: Decodable {
+public struct PteroClientServer: Decodable, Hashable {
     public let serverOwner: Bool
     public let identifier: String
     public let uuid: String
@@ -150,7 +150,7 @@ public class PteroClientServer: Decodable {
     }
 }
 
-public class PteroClientServerResources: Decodable {
+public struct PteroClientServerResources: Decodable, Hashable {
     public let memoryBytes: Int
     public let cpuAbsolute: Double
     public let diskBytes: Int
@@ -166,7 +166,7 @@ public class PteroClientServerResources: Decodable {
     }
 }
 
-public class PteroClientServerResourceUsage: Decodable {
+public struct PteroClientServerResourceUsage: Decodable, Hashable {
     public let currentState: String
     public let isSuspended: Bool
     public let resources: PteroClientServerResources
