@@ -19,6 +19,10 @@ public class Fastbird {
         self.decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
 
+    public func isReady() -> Bool {
+        return self.baseUrl.count > 0 && self.apiKey.count > 0
+    }
+
     public func setBaseUrl(baseUrl: String) {
         self.baseUrl = baseUrl
         if baseUrl.hasSuffix("/") {
