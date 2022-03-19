@@ -68,4 +68,37 @@ public class Fastbird {
             completion(response.result)
         }
     }
+
+    public func getServersAsync() async throws -> APIResponseList<APIResponseObject<PteroClientServer, APIResponsePaginationMetaData>, APIResponsePaginationMetaData> {
+        let url = apiUrl + "/client";
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(apiKey)",
+            "Accept": "application/json"
+        ]
+        let task = AF.request(url, method: .get, headers: headers).serializingDecodable(APIResponseList<APIResponseObject<PteroClientServer, APIResponsePaginationMetaData>, APIResponsePaginationMetaData>.self, decoder: self.decoder)
+        let response = try await task.value
+        return response
+    }
+
+    public func getServerAsync(serverId: String) async throws -> APIResponseObject<PteroClientServer, APIResponseServerMetaData> {
+        let url = apiUrl + "/client/servers/\(serverId)";
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(apiKey)",
+            "Accept": "application/json"
+        ]
+        let task = AF.request(url, method: .get, headers: headers).serializingDecodable(APIResponseObject<PteroClientServer, APIResponseServerMetaData>.self, decoder: self.decoder)
+        let response = try await task.value
+        return response
+    }
+
+    public func getServerResourceUsageAsync(serverId: String) async throws -> APIResponseObject<PteroClientServerResourceUsage, APIResponseServerMetaData> {
+        let url = apiUrl + "/client/servers/\(serverId)/resources";
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(apiKey)",
+            "Accept": "application/json"
+        ]
+        let task = AF.request(url, method: .get, headers: headers).serializingDecodable(APIResponseObject<PteroClientServerResourceUsage, APIResponseServerMetaData>.self, decoder: self.decoder)
+        let response = try await task.value
+        return response
+    }
 }
